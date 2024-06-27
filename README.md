@@ -19,7 +19,8 @@ $ pip3 install -r requirements.txt
 
 ### Step 2: Data Cleaning
 - We took the raw data stored in the files `artist_data.csv` and `artworks_data.csv`
-- We cleaned this file whit a Python script that using Pandas 
+- We cleaned this files whit a Python script that using Pandas 
+- At the end of the cleaning process, we save the two cleaned files in the following files `cleaned_artist_data.csv` and `cleaned_artwork_data.csv` 
 
 ### Step 3: Create the MySQL Database
 - You can create a database using MySQL Workbench or via terminal
