@@ -16,7 +16,7 @@ $ pip3 install -r requirements.txt
 ## How we built this project
 ### Step 1: ER diagram
 - We drew an ER Diagram for the museum's database:
-![](ER-diagram/er_diagram.png)
+![](ER-diagram/er.drawio.png)
 
 ### Step 2: Data Cleaning
 - We took the raw data stored in the files `artist_data.csv` and `artworks_data.csv`
