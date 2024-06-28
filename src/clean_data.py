@@ -18,10 +18,13 @@ def convert_dtypes(df, desired_dtypes):
 artist_df = pd.read_csv('csv-files/artist_data.csv')
 artwork_df = pd.read_csv('csv-files/artwork_data.csv')
 
+# Create copies of dataframes to work on them
+artist_df_copy = artist_df.copy()
+artwork_df_copy = artwork_df.copy() 
 
 # Clean artist_data.csv
-artist_df.drop_duplicates(inplace=True)     # Drop duplicates
-artist_df.dropna(inplace=True)              # Drop rows with missing values
+artist_df_copy.drop_duplicates(inplace=True)     # Drop duplicates
+artist_df_copy.dropna(inplace=True)              # Drop rows with missing values
 
 # Verify the data types of each column and convert them to the correct data type
 # Desired data types
@@ -36,20 +39,20 @@ artist_desired_dtypes = {
     'url': str,
 }
 
-# Convert artist_df data types
-artist_df = convert_dtypes(artist_df, artist_desired_dtypes)
+# Convert artist_df_copy data types
+artist_df_copy = convert_dtypes(artist_df_copy, artist_desired_dtypes)
 
 # Handle null values
-artist_df['id'] = artist_df['id'].fillna(0)
-artist_df['name'] = artist_df['name'].fillna('')
-artist_df['gender'] = artist_df['gender'].fillna('')
-artist_df['yearOfBirth'] = artist_df['yearOfBirth'].fillna('')
-artist_df['url'] = artist_df['url'].fillna('')
+artist_df_copy['id'] = artist_df_copy['id'].fillna(0)
+artist_df_copy['name'] = artist_df_copy['name'].fillna('')
+artist_df_copy['gender'] = artist_df_copy['gender'].fillna('')
+artist_df_copy['yearOfBirth'] = artist_df_copy['yearOfBirth'].fillna('')
+artist_df_copy['url'] = artist_df_copy['url'].fillna('')
 
 
 # Clean artwork_data.csv
-artwork_df.drop_duplicates(inplace=True)    # Drop duplicates
-artwork_df.dropna(inplace=True)             # Drop rows with missing values
+artwork_df_copy.drop_duplicates(inplace=True)    # Drop duplicates
+artwork_df_copy.dropna(inplace=True)             # Drop rows with missing values
 
 # Verify the data types of each column and convert them to the correct data type
 # Desired data types
@@ -76,15 +79,15 @@ artwork_desired_types = {
     'url': str
 }
 
-# Convert artwork_df data types
-artwork_df = convert_dtypes(artwork_df, artwork_desired_types)
+# Convert artwork_df_copy data types
+artwork_df_copy = convert_dtypes(artwork_df_copy, artwork_desired_types)
 
 # Handle null values
-artwork_df['id'] = artwork_df['id'].fillna(0)
-artwork_df['accession_number'] = artwork_df['accession_number'].fillna('')
-artwork_df['artistId'] = artwork_df['artistId'].fillna(0)
+artwork_df_copy['id'] = artwork_df_copy['id'].fillna(0)
+artwork_df_copy['accession_number'] = artwork_df_copy['accession_number'].fillna('')
+artwork_df_copy['artistId'] = artwork_df_copy['artistId'].fillna('')
 
 
-# Save clen data
-artist_df.to_csv('csv-files/clean_artist_data.csv', index=False)
-artwork_df.to_csv('csv-files/clean_artwork_data.csv', index=False)
+# Save cleaned data
+artist_df_copy.to_csv('csv-files/cleaned_artist_data.csv', index=False)
+artwork_df_copy.to_csv('csv-files/cleaned_artwork_data.csv', index=False)
