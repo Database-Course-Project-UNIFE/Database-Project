@@ -30,4 +30,66 @@ $ pip3 install -r requirements.txt
 $ mysql -u username -p 
 mysql> CREATE SCHEMA Museo;
 mysql> USE Museo;
+mysql> exit;
+```
+
+### Step 4: Create and Inizialize the Tables
+- We have written a MySQL file for the creation of the two tables Artists and Artworks
+- We also have written a php file to automate reading queries from `csv` files and inserting them into the database
+- Artists Table:
+```MySQL
+CREATE TABLE Artists (
+	id INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    gender CHAR NOT NULL,
+    yearOfBirth CHAR(4) NOT NULL,
+    yearOfDeath VARCHAR(4),
+    placeOfBirth VARCHAR(50),
+    placeOfDeath VARCHAR(50),
+    url VARCHAR(255) NOT NULL,
+    
+    PRIMARY KEY (id)
+);
+```
+- Artworks Table:
+```MySQL
+CREATE TABLE Artworks (
+	id INTEGER NOT NULL,
+    accession_number CHAR(6) NOT NULL,
+    artist VARCHAR(100),
+    artistRole VARCHAR(20),
+    artistId INTEGER NOT NULL,
+	title VARCHAR(2047),
+    dateText VARCHAR(255),
+    medium VARCHAR(255),
+    creditLine VARCHAR(2047),
+    year INTEGER,
+    acquisitionYear INTEGER,
+    types VARCHAR(100),
+    width INTEGER,
+    height INTEGER,
+    depth DECIMAL(10,2),
+    units CHAR(2),
+    inscription VARCHAR(255),
+    thumbnailCopyright VARCHAR(2047),
+    thumbnailUrl VARCHAR(255),
+    url VARCHAR(255),
+    
+    PRIMARY KEY (id, accession_number),
+    UNIQUE (id)
+);
+```
+
+- Artists Insert:
+```MySQL
+INSERT INTO Artists (id, name, gender, yearOfBirth, yearOfDeath, placeOfBirth, placeOfDeath, url)
+                VALUES ('$id', '$name', '$gender', '$yearOfBirth', '$yearOfDeath', '$placeOfBirth', '$placeOfDeath', '$url')
+```
+
+- Artworks Insert:
+```MySQL
+INSERT INTO ARTWORKS (id, accession_number, artist, artistRole, artistId, title, dateText, medium, creditLine, year, acquisitionYear, 
+                                  types, width, height, depth, units, inscription, thumbnailCopyright, thumbnailUrl, url)
+            VALUES ('$id', '$accession_number', '$artist', '$artistRole', '$artistId', '$title', '$dateText', '$medium', '$creditLine', '$year'
+                    '$acquisitionYear', '$types', '$width', '$height', '$depth', '$units', '$inscription', '$thumbnailCopyright', '$thumbnailUrl', '$url')";
 ```
