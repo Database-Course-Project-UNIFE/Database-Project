@@ -1,5 +1,7 @@
 <?php
 
+// 1
+
 $hostname   = "172.25.3.54";
 $username   = "nicola";
 $password   = "password";
@@ -16,12 +18,22 @@ if (!$link) {
     exit;
 }
 
-$name         = $_POST['name'];
-$gender       = $_POST['gender'];
-$yearOfBirth  = $_POST['yearOfBirth'];
-$yeraOfDeath  = $_POST['yearOfDeath'];
-$placeOfBirth = $_POST['placeOfBirth'];
-$placeOfDeath = $_POST['placeOfDeath'];
+// If the form was not submitted or not filled out correctly set the values to ''
+if ($_POST) {
+    $name         = $_POST['name'];
+    $gender       = $_POST['gender'];
+    $yearOfBirth  = $_POST['yearOfBirth'];
+    $yeraOfDeath  = $_POST['yearOfDeath'];
+    $placeOfBirth = $_POST['placeOfBirth'];
+    $placeOfDeath = $_POST['placeOfDeath'];
+} else {
+    $name         = '';
+    $gender       = '';
+    $yearOfBirth  = '';
+    $yeraOfDeath  = '';
+    $placeOfBirth = '';
+    $placeOfDeath = '';
+}
 
 $sql = "SELECT *
         FROM Artist
@@ -42,13 +54,13 @@ if (!$query) {
 
 ?>
 
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Search Artist</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css">
     <style>
         body {
             max-width: 1200px;
@@ -57,9 +69,11 @@ if (!$query) {
 </head>
 
 <body>
-    <h1>Ricerca Artisti</h1>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
 
-    <form action="get.php" method="POST">
+    <h1>Search Artist</h1>
+
+    <form action="searchArtist.php" method="POST">
         <fieldset>
             <label>Name:</label>
             <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" autofocus>
