@@ -12,6 +12,7 @@ CREATE TABLE Artists (
     placeOfBirth VARCHAR(50),
     placeOfDeath VARCHAR(50),
     url VARCHAR(255) NOT NULL,
+    
     PRIMARY KEY (id)
 );
 
@@ -37,5 +38,7 @@ CREATE TABLE Artworks (
     thumbnailCopyright VARCHAR(2047),
     thumbnailUrl VARCHAR(255),
     url VARCHAR(255),
-    PRIMARY KEY (id)
+    
+    PRIMARY KEY (id, accession_number),
+    UNIQUE (id)
 );
