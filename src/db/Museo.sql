@@ -13,7 +13,8 @@ CREATE TABLE Artists (
     placeOfDeath VARCHAR(50),
     url VARCHAR(255) NOT NULL,
     
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (id) REFERENCES Artworks (ArtistId)
 );
 
 -- Create Artworks table
