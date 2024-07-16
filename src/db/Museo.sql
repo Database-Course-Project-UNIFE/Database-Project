@@ -9,12 +9,13 @@ CREATE TABLE Artists (
     gender CHAR NOT NULL,
     yearOfBirth CHAR(4) NOT NULL,
     yearOfDeath VARCHAR(4),
-    placeOfBirth VARCHAR(50),
-    placeOfDeath VARCHAR(50),
+    birthCity VARCHAR(50),
+    birthState VARCHAR(50),
+    deatCity VARCHAR(50),
+    deathState VARCHAR(50),
     url VARCHAR(255) NOT NULL,
     
-    PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES Artworks (ArtistId)
+    PRIMARY KEY (id)
 );
 
 -- Create Artworks table
@@ -40,6 +41,5 @@ CREATE TABLE Artworks (
     thumbnailUrl VARCHAR(255),
     url VARCHAR(255),
     
-    PRIMARY KEY (id, accession_number),
-    UNIQUE (id)
+    PRIMARY KEY (id)
 );
