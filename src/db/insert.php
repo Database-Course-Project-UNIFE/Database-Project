@@ -6,7 +6,7 @@ $password   = "password";
 $dbName     = "Museo";
 
 // Connect to the database
-$link = mysqli_connect($hostname, $username, $password, $dbname);
+$link = mysqli_connect($hostname, $username, $password, $dbName);
 
 // Verify connection
 if (!$link) {
@@ -18,74 +18,64 @@ if (!$link) {
 
 // Function to insert Artists data
 function insertArtist($link) {
-    $file = fopen("path/to/cleaned_artist_data.csv", "r");
+    $file_path = "/mnt/c/Users/nicol/OneDrive/Documenti/GitHub/Database-Project/csv-files/cleaned_artist_data.csv";
+    $file = fopen($file_path, "r");
     
     fgetcsv($file);
 
+    // Prepare the statement
+    $stmt = mysqli_prepare($link, "INSERT INTO Artists (id, name, gender, yearOfBirth, birthCity, birthState, yearOfDeath, deathCity, deathState, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "isssssssss", $id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url);
+
     while (($row = fgetcsv($file)) !== FALSE) {
-        $id           = $row[0];
-        $name         = $row[1];
-        $gender       = $row[2];
-        $yearOfBirth  = $row[3];
-        $yearOfDeath  = $row[4];
-        $placeOfBirth = $row[5];
-        $placeOfDeath = $row[6];
-        $url          = $row[7];
+        // Assign variables from CSV row
+        list($id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url) = $row;
 
-        $sql = "INSERT INTO Artists (id, name, gender, yearOfBirth, yearOfDeath, placeOfBirth, placeOfDeath, url)
-                VALUES ('$id', '$name', '$gender', '$yearOfBirth', '$yearOfDeath', '$placeOfBirth', '$placeOfDeath', '$url')";
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
 
-        $query = mysqli_query($link, $sql);
-        if (!$query) {
-            echo "Error: " . mysqli_error($link);
+        // Check for errors
+        if (mysqli_stmt_errno($stmt)) {
+            echo "Error: " . mysqli_stmt_error($stmt);
             exit;
         }
     }
 
     fclose($file);
+    mysqli_stmt_close($stmt);
 }
 
 // Function to insert Artworks data
 function insertArtworks($link) {
-    $file = fopen("path/to/cleaned_artwork_data.csv", "r");
+    $file_path = "/mnt/c/Users/nicol/OneDrive/Documenti/GitHub/Database-Project/csv-files/cleaned_artwork_data.csv";
+    $file = fopen($file_path, "r");
 
     fgetcsv($file);
 
+    // Prepare the statement
+    $stmt = mysqli_prepare($link, "INSERT INTO Artworks (id, accession_number, artist, artistRole, artistId, title, dateText, medium, creditLine, year, acquisitionYear, types, width, height, depth, units, inscription, thumbnailUrl, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Bind parameters
+    mysqli_stmt_bind_param($stmt, "isssissssiisiiissss", $id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url);
+
     while (($row = fgetcsv($file)) !== FALSE) {
-        $id                 = $row[0];
-        $accession_number   = $row[1];
-        $artist             = $row[2];
-        $artistRole         = $row[3];
-        $artistId           = $row[4];
-        $title              = $row[5];
-        $dateText           = $row[6];
-        $medium             = $row[7];
-        $creditLine         = $row[8];
-        $year               = $row[9];
-        $acquisitionYear    = $row[10];
-        $types              = $row[11];
-        $width              = $row[12];
-        $height             = $row[13];
-        $depth              = $row[14];
-        $units              = $row[15];
-        $inscription        = $row[16];
-        $thumbnailCopyright = $row[17];
-        $thumbnailUrl       = $row[18];
-        $url                = $row[19];
-    }
+        // Assign variables from CSV row
+        list($id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url) = $row;
 
-    $sql = "INSERT INTO ARTWORKS (id, accession_number, artist, artistRole, artistId, title, dateText, medium, creditLine, year, acquisitionYear, 
-                                  types, width, height, depth, units, inscription, thumbnailCopyright, thumbnailUrl, url)
-            VALUES ('$id', '$accession_number', '$artist', '$artistRole', '$artistId', '$title', '$dateText', '$medium', '$creditLine', '$year'
-                    '$acquisitionYear', '$types', '$width', '$height', '$depth', '$units', '$inscription', '$thumbnailCopyright', '$thumbnailUrl', '$url')";
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
 
-    $query = mysqli_query($link, $sql);
-    if (!$query) {
-        echo "Error: " . mysqli_error($link);
-        exit;
+        // Check for errors
+        if (mysqli_stmt_errno($stmt)) {
+            echo "Error: " . mysqli_stmt_error($stmt);
+            exit;
+        }
     }
 
     fclose($file);
+    mysqli_stmt_close($stmt);
 }
 
 // Data insert
