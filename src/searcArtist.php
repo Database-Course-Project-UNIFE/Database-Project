@@ -1,56 +1,65 @@
 <?php
 
-// 1
+    // 1
 
-$hostname   = "172.25.3.54";
-$username   = "nicola";
-$password   = "password";
-$dbName     = "Museo";
+    $hostname   = "172.25.3.54";
+    $username   = "nicola";
+    $password   = "password";
+    $dbName     = "Museo";
 
-// Connect to the database
-$link = mysqli_connect($hostname, $username, $password, $dbname);
+    // Connect to the database
+    $link = mysqli_connect($hostname, $username, $password, $dbname);
 
-// Verify connection
-if (!$link) {
-    echo "Error: Impossible to connect to the database <br/>";
-    echo "Error code: " . mysqli_connect_errno() . "<br/>";
-    echo "Error msg: " . mysqli_connect_error() . "<br/>";
-    exit;
-}
+    // Verify connection
+    if (!$link) {
+        echo "Error: Impossible to connect to the database <br/>";
+        echo "Error code: " . mysqli_connect_errno() . "<br/>";
+        echo "Error msg: " . mysqli_connect_error() . "<br/>";
+        exit;
+    }
 
-// If the form was not submitted or not filled out correctly set the values to ''
-if ($_POST) {
-    $name         = $_POST['name'];
-    $gender       = $_POST['gender'];
-    $yearOfBirth  = $_POST['yearOfBirth'];
-    $yeraOfDeath  = $_POST['yearOfDeath'];
-    $placeOfBirth = $_POST['placeOfBirth'];
-    $placeOfDeath = $_POST['placeOfDeath'];
-} else {
-    $name         = '';
-    $gender       = '';
-    $yearOfBirth  = '';
-    $yeraOfDeath  = '';
-    $placeOfBirth = '';
-    $placeOfDeath = '';
-}
+    // If the form was not submitted or not filled out correctly set the values to ''
+    if ($_POST) {
+        $name         = $_POST['name'];
+        $gender       = $_POST['gender'];
+        $yearOfBirth  = $_POST['yearOfBirth'];
+        $yearOfDeath  = $_POST['yearOfDeath'];
+        $birthCity    = $_POST['birthCity'];
+        $birthState   = $_POST['birthState'];
+        $deathCity    = $_POST['deathCity'];
+        $deathState   = $_POST['deathState'];
 
-$sql = "SELECT *
-        FROM Artist
-        WHERE (
-                name LIKE $name% AND 
-                gender LIKE $gender% AND 
-                yearOfBirth LIKE $yearOfBirth% AND 
-                yearOfDeath LIKE $yeraOfDeath% AND 
-                placeOfBirth LIKE $placeOfBirth% AND 
-                placeOfDeath LIKE $placeOfDeath";
+    } else {
+        $name         = '';
+        $gender       = '';
+        $yearOfBirth  = '';
+        $yeraOfDeath  = '';
+        $birthCity    = '';
+        $birthState   = '';
+        $deathCity    = '';
+        $deathState   = '';
+    }
 
-$query = mysqli_query($link, $sql);
+    $sql = "SELECT Artists.*
+            FROM Artist
+            WHERE (
+                    name LIKE '%$name%' AND 
+                    gender LIKE '%$gender%' AND 
+                    yearOfBirth LIKE '%$yearOfBirth%' AND 
+                    yearOfDeath LIKE '%$yearOfDeath%' AND 
+                    birthCity LIKE '%$birthCity%' AND
+                    birthState LIKE '%$birthState%' AND
+                    deathCity LIKE '%$deathCity%' AND
+                    deathState LIKE '%$deathState%'
+                    )
+            ";
 
-if (!$query) {
-    echo "Error: " . mysqli_error($link);
-    exit;
-}
+    $query = mysqli_query($link, $sql);
+
+    if (!$query) {
+        echo "Error: " . mysqli_error($link);
+        exit;
+    }
 
 ?>
 
