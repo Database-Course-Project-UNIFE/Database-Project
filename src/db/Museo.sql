@@ -8,10 +8,10 @@ CREATE TABLE Artists (
     name VARCHAR(255) NOT NULL,
     gender CHAR NOT NULL,
     yearOfBirth CHAR(4) NOT NULL,
+    birthCity VARCHAR(50) NOT NULL,
+    birthState VARCHAR(50) NOT NULL,
     yearOfDeath VARCHAR(4),
-    birthCity VARCHAR(50),
-    birthState VARCHAR(50),
-    deatCity VARCHAR(50),
+    deathCity VARCHAR(50),
     deathState VARCHAR(50),
     url VARCHAR(255) NOT NULL,
     
@@ -20,12 +20,12 @@ CREATE TABLE Artists (
 
 -- Create Artworks table
 CREATE TABLE Artworks (
-	id INTEGER NOT NULL,
-    accession_number CHAR(6) NOT NULL,
-    artist VARCHAR(100),
-    artistRole VARCHAR(20),
+    id INTEGER NOT NULL,
+    accession_number CHAR(7) NOT NULL,
+    artist VARCHAR(255),
+    artistRole VARCHAR(100),
     artistId INTEGER NOT NULL,
-	title VARCHAR(2047),
+    title VARCHAR(2047),
     dateText VARCHAR(255),
     medium VARCHAR(255),
     creditLine VARCHAR(2047),
@@ -34,12 +34,12 @@ CREATE TABLE Artworks (
     types VARCHAR(100),
     width INTEGER,
     height INTEGER,
-    depth DECIMAL(10,2),
+    depth INTEGER,
     units CHAR(2),
-    inscription VARCHAR(255),
-    thumbnailCopyright VARCHAR(2047),
+    inscription CHAR(15),
     thumbnailUrl VARCHAR(255),
     url VARCHAR(255),
     
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (artistId) REFERENCES Artists(id)
 );
