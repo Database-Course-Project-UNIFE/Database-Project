@@ -20,8 +20,7 @@ def convert_dtypes(df, desired_dtypes):
 
 
 def clean_artist_data(df):
-    df['gender'] = df['gender'].fillna('-', inplace = True)
-    df['gender'] = df.replace({'Male': 'M', 'Female': 'F'}, inplace=True)
+    df['gender'] = df['gender'].fillna('-').replace({'Male': 'M', 'Female': 'F'})
     df['placeOfBirth'] = df['placeOfBirth'].fillna('Unknown')
     df['placeOfDeath'] = df['placeOfDeath'].fillna('Unknown')
     
