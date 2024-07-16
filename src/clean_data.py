@@ -112,9 +112,9 @@ def main():
         'name'        : str,
         'gender'      : str,
         'yearOfBirth' : int,
-        'yearOfDeath' : int,
         'birthCity'   : str,
         'birthState'  : str,
+        'yearOfDeath' : int,
         'deathCity'   : str,
         'deathState'  : str, 
         'url'         : str
