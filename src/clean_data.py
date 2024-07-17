@@ -34,15 +34,14 @@ def clean_artist_data(df):
     df['deathCity'] = death_split[0]
     df['deathState'] = death_split[1].fillna('Unknown')
 
-    # Converting 'yearOfbirth' and 'yearOfDeath' columns to integers type
-    df['yearOfBirth'] = df['yearOfBirth'].replace(np.nan, 0).astype(int)
-    df['yearOfDeath'] = df['yearOfDeath'].replace(np.nan, 0).astype(int)
-
     # Replace missing values
     df['birthCity'] = df['birthCity'].fillna('Unknown')
     df['birthState'] = df['birthState'].fillna('Unknown')
     df['deathCity'] = df['deathCity'].fillna('Unknown')
     df['deathState'] = df['deathState'].fillna('Unknown')
+
+    df['yearOfBirth'] = df['yearOfBirth'].replace(np.nan, 0)
+    df['yearOfDeath'] = df['yearOfDeath'].replace(np.nan, 0)
     
     df.drop(columns=['placeOfBirth', 'placeOfDeath', 'dates'], inplace=True)
     columns_to_keep = ['id', 'name', 'gender', 'yearOfBirth', 'birthCity', 'birthState',
@@ -60,6 +59,9 @@ def clean_artwork_data(df):
     df['width'] = df['dimensions'].str.extract(r'(\d+)\s*[xX]\s*\d+').astype(float).iloc[:, 0]
     df['height'] = df['dimensions'].str.extract(r'\d+\s*[xX]\s*(\d+)').astype(float).iloc[:, 0]
     
+    # Extract type without dimensions from 'dimensions' column
+    df['types'] = df['dimensions'].apply(extract_type_without_dimensions)
+    
     # Fill missing values
     df['units'] = df['units'].fillna('mm')
     df['creditLine'] = df['creditLine'].fillna('Unknown')
@@ -70,18 +72,15 @@ def clean_artwork_data(df):
     df['medium'] = df['medium'].fillna('Unknown')
     df['acquisitionYear'] = df['acquisitionYear'].fillna(0)
     df['thumbnailUrl'] = df['thumbnailUrl'].fillna('Unknown')
+    df['year'] = pd.to_numeric(df['year'].replace('no date', np.nan), errors='coerce').fillna(0)
+    df['acquisitionYear'] = pd.to_numeric(df['acquisitionYear'], errors='coerce').fillna(0)
+    df['width'] = pd.to_numeric(df['width'], errors='coerce').fillna(0)
+    df['height'] = pd.to_numeric(df['height'], errors='coerce').fillna(0)
+    df['depth'] = df['depth']
 
-    # Convert column type
-    df['year'] = pd.to_numeric(df['year'].replace('no date', np.nan), errors='coerce').fillna(0).astype(int)
-    df['acquisitionYear'] = pd.to_numeric(df['acquisitionYear'], errors='coerce').fillna(0).astype(int)
-    df['width'] = pd.to_numeric(df['width'], errors='coerce').fillna(0).astype(int)
-    df['height'] = pd.to_numeric(df['height'], errors='coerce').fillna(0).astype(int)
-    df['depth'] = df['depth'].astype(int)
+    # Replace tumbnailUrl
     df['thumbnailUrl'] = df['thumbnailUrl'].str.replace("/www.", "/media.")
 
-    # Extract type without dimensions from 'dimensions' column
-    df['types'] = df['dimensions'].apply(extract_type_without_dimensions)
-    
     columns_to_keep = ['id', 'accession_number', 'artist', 'artistRole', 'artistId', 'title', 'dateText', 
                        'medium', 'creditLine', 'year', 'acquisitionYear', 'types', 'width', 'height', 
                        'depth', 'units', 'inscription', 'thumbnailUrl', 'url']
@@ -118,7 +117,7 @@ def main():
         'deathCity'   : str,
         'deathState'  : str, 
         'url'         : str
-    }
+    } 
 
     cleaned_artist_df = convert_dtypes(cleaned_artist_df, artist_desired_dtypes)
     cleaned_artist_df.to_csv(cleaned_artist_data_csv, index=False)
