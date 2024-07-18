@@ -7,20 +7,40 @@
     <title>Progetto Basi di Dati - Casagrande & Ricci Maccarini</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css">
     <style>
-        body {
-            max-width: 1200px;
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            align-items: center;
+            padding: 20px;
+        }
+
+        button {
+            padding: 20px 20px;
+            font-size: 1.8em;
+            width: 1000px;
+            height: 200px;
+            border: none;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
         }
     </style>
 </head>
 
 <body>
-    <h1>Progetto Basi di Dati - Casagrande & Ricci Maccarini</h1>
-    <nav>
-        <ul>
-            <li><a href="searchArtist.php">Search Artists</a></li>
-            <li><a href="searchArtwork.php">Search Artworks</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <h1>Progetto Basi di Dati - Casagrande & Ricci Maccarini</h1>
+        <button onclick="window.location.href='searchArtist.php'">Search Artists</button><br>
+        <button onclick="window.location.href='searchArtwork.php'">Search Artworks</button><br>
+        <button onclick="window.location.href='stats.php'">See Statistic</button><br>
+    </div>
 </body>
 
 </html>
