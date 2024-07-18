@@ -96,7 +96,7 @@ if (!$query) {
 
 <body>
     <button onclick="window.location.href='index.html'">Back to Home</button>
-    <h1>Search Artist</h1>
+    <h1>Search Artworks</h1>
 
     <form action="searchArtwork.php" method="POST">
         <fieldset>
