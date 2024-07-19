@@ -29,22 +29,26 @@ function insertArtist($link) {
     // Bind parameters
     mysqli_stmt_bind_param($stmt, "isssssssss", $id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url);
 
+    $success_count = 0;
+    $error_count = 0;
+
     while (($row = fgetcsv($file)) !== FALSE) {
         // Assign variables from CSV row
         list($id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url) = $row;
 
         // Execute the statement
-        mysqli_stmt_execute($stmt);
-
-        // Check for errors
-        if (mysqli_stmt_errno($stmt)) {
-            echo "Error: " . mysqli_stmt_error($stmt);
-            exit;
+        if (mysqli_stmt_execute($stmt)) {
+            $success_count++;
+        } else {
+            $error_count++;
+            error_log("Error inserting artist $id: " . mysqli_stmt_error($stmt) . "\n", 3, "artist_insert_errors.log");
         }
     }
 
     fclose($file);
     mysqli_stmt_close($stmt);
+
+    echo "Artists inserted: $success_count, Errors: $error_count\n";
 }
 
 // Function to insert Artworks data
@@ -60,22 +64,26 @@ function insertArtworks($link) {
     // Bind parameters
     mysqli_stmt_bind_param($stmt, "isssissssiisiiissss", $id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url);
 
+    $success_count = 0;
+    $error_count = 0;
+
     while (($row = fgetcsv($file)) !== FALSE) {
         // Assign variables from CSV row
         list($id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url) = $row;
 
         // Execute the statement
-        mysqli_stmt_execute($stmt);
-
-        // Check for errors
-        if (mysqli_stmt_errno($stmt)) {
-            echo "Error: " . mysqli_stmt_error($stmt);
-            exit;
+        if (mysqli_stmt_execute($stmt)) {
+            $success_count++;
+        } else {
+            $error_count++;
+            error_log("Error inserting artwork $id: " . mysqli_stmt_error($stmt) . "\n", 3, "artwork_insert_errors.log");
         }
     }
 
     fclose($file);
     mysqli_stmt_close($stmt);
+
+    echo "Artworks inserted: $success_count, Errors: $error_count\n";
 }
 
 // Data insert
