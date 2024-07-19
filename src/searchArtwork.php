@@ -18,6 +18,14 @@ if (!$link) {
     exit;
 }
 
+// Verify connection
+if (!$link) {
+    echo "Error: Impossible to connect to the database <br/>";
+    echo "Error code: " . mysqli_connect_errno() . "<br/>";
+    echo "Error msg: " . mysqli_connect_error() . "<br/>";
+    exit;
+}
+
 // If the form was not submitted or not filled out correctly set the values to ''
 if ($_POST) {
     $accession_number = $_POST['accession_number'];
@@ -67,7 +75,7 @@ if (!$query) {
             display: flex;
             flex-direction: column;
             width: 300px;
-            margin: auto;
+            margin: 0;
         }
 
         fieldset {
@@ -84,12 +92,13 @@ if (!$query) {
             margin-right: 10px;
         }
 
-        input[type="text"] {
+        input[type="text"], select {
             flex: 1;
         }
 
         input[type="submit"] {
             align-self: flex-start;
+            margin-top: 10px;
         }
     </style>
 </head>

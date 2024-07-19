@@ -18,13 +18,14 @@ if (!$link) {
     exit;
 }
 
-$sql = "SELECT Artworks.*, Artists.*, COUNT(*) OVER() AS totalWorks
+$sql = "SELECT *
         FROM Artworks
         JOIN Artists ON Artworks.artistId = Artists.id
         WHERE (Artworks.artistId={$_GET['artistId']}) 
-        ORDER BY Artworks.medium, Artworks.year";
+        ORDER BY Artworks.year ASC";
 
 $query = mysqli_query($link, $sql);
+$totalWorks = mysqli_num_rows($query);
 
 ?>
 
@@ -42,14 +43,7 @@ $query = mysqli_query($link, $sql);
     <button onclick="window.location.href='index.html'">Back to Home</button>
     <h1> <?php echo htmlspecialchars($_GET['artistName']); ?>'s Artworks </h1>
 
-    <p>Number of artworks: <?php echo $total_works; ?></p>
-
-    <?php
-    $totalWorks = 0;
-    if ($row = mysqli_fetch_assoc($query)) {
-        $totalWorks = $row['totalWorks'];
-    }
-    ?>
+    <p>Number of artworks: <?php echo $totalWorks; ?></p>
     
     <table>
         <thead>

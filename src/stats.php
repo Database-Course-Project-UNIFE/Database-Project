@@ -61,16 +61,16 @@ $sql4  = "SELECT at.name, COUNT(DISTINCT aw.medium) AS differentMediums
 $query4 = mysqli_query($link, $sql4);
 // Fetch the result
 $result = mysqli_fetch_assoc($query4);
-$artistName = $result['name'];
+$MoreMediumsArtistName = $result['name'];
 $differentMediums = $result['differentMediums'];
 
 // Largest and smaller artwork of a specific artist
 if ($_POST) {
-    $name  = $_POST['name'];
+    $MaxMinArtistName  = $_POST['name'];
     $sql5 = "SELECT aw.title, aw.units, aw.width * aw.height AS area
             FROM Artworks aw
             JOIN Artists at ON aw.artistId = at.id
-            WHERE at.name = '$artistName' 
+            WHERE at.name = '$MaxMinArtistName' 
                   AND aw.width IS NOT NULL 
                   AND aw.height IS NOT NULL
                   AND aw.units IS NOT NULL
@@ -93,7 +93,8 @@ if ($_POST) {
     $maxTitle  = $rowMax['title'];
     $maxUnits  = $rowMax['units'];
 } else {
-    $artistName = '';
+    $MaxMinArtistName = '';
+    $minArea = $minTitle = $minUnits = $maxArea = $maxTitle = $maxUnits = '';
 }
 
 
@@ -107,6 +108,42 @@ if ($_POST) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stats</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tufte-css/1.8.0/tufte.min.css">
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0;
+            padding-left: 30px;
+        }
+
+        fieldset {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border: none;
+            padding: 0;
+        }
+
+        label {
+            width: 150px;
+            text-align: left;
+            margin-right: 10px;
+            font-size: 25px;
+        }
+
+        input[type="text"], select {
+            flex: 1;
+        }
+
+        input[type="submit"] {
+            align-self: flex-start;
+            margin-top: 10px;
+        }
+        ul {
+            padding-left: 50px; 
+        }
+    </style>
 </head>
 
 <body>
@@ -133,13 +170,13 @@ if ($_POST) {
 
     <h2>Artists who published their fist artwork under age 18: <?php if ($query3) echo $numRowsQuery3; ?></h2>
 
-    <h2>Artist who varied more types of artworks: <?php if ($query4) echo $artistName . " (" . $differentMediums . " types)"; ?></h2>
+    <h2>Artist who varied more types of artworks: <?php if ($query4) echo $MoreMediumsArtistName . " (" . $differentMediums . " types)"; ?></h2>
 
     <h2>Largest and smallest artwork of a specific artist:</h2>
     <form action="stats.php" method="POST">
         <fieldset>
             <label>Artist's name:</label>
-            <input type="text" name="name" value="<?php echo htmlspecialchars($artistName); ?>">
+            <input type="text" name="name" value="<?php echo htmlspecialchars($MaxMinArtistName); ?>">
         </fieldset>
         <input type="submit" value="Search" />
     </form> 
