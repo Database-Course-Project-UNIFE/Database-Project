@@ -24,8 +24,7 @@ if ($_POST) {
                WHERE (year = '$year')";
     $query1 = mysqli_query($link, $sql1);
 } else {
-    $year   = '';
-    $query1 = '';
+    $year = $query1 = '';
 }
 
 // 2. number of artist born or died in a specific nation
@@ -36,48 +35,46 @@ if ($_POST) {
                WHERE (birthState = '$nation' OR deathState = '$nation')";
     $query2 = mysqli_query($link, $sql2);
 } else {
-    $nation = '';
-    $query2 = '';
+    $nation = $query2 = '';
 }
 
 // Artists who published their fist artwork under age 18
-$sql3  = "SELECT at.id, at.name, at.yearOfBirth
-          FROM Artists at
-          JOIN Artworks aw ON at.id = aw.artistId
-          GROUP BY at.id, at.name, at.yearOfBirth
-          HAVING (MIN(CONVERT(aw.year, SIGNED)) - CONVERT(at.yearOfBirth, SIGNED)) < 18
-                  AND MIN(CONVERT(aw.year, SIGNED)) > 0
-          ORDER BY at.name";
-$query3 = mysqli_query($link, $sql3);
+$sql3          = "SELECT at.id, at.name, at.yearOfBirth
+                  FROM Artists at
+                  JOIN Artworks aw ON at.id = aw.artistId
+                  GROUP BY at.id, at.name, at.yearOfBirth
+                  HAVING (MIN(CONVERT(aw.year, SIGNED)) - CONVERT(at.yearOfBirth, SIGNED)) < 18
+                          AND MIN(CONVERT(aw.year, SIGNED)) > 0
+                  ORDER BY at.name";
+$query3        = mysqli_query($link, $sql3);
 $numRowsQuery3 = mysqli_num_rows($query3);
 
 // Artist who varied more types of works
-$sql4  = "SELECT at.name, COUNT(DISTINCT aw.medium) AS differentMediums
-          FROM Artists at
-          JOIN Artworks aw ON at.id = aw.artistId
-          GROUP BY at.id, at.name
-          ORDER BY differentMediums DESC
-          LIMIT 1";
-$query4 = mysqli_query($link, $sql4);
-// Fetch the result
-$result = mysqli_fetch_assoc($query4);
-$MoreMediumsArtistName = $result['name'];
-$differentMediums = $result['differentMediums'];
+$sql4                  = "SELECT at.name, COUNT(DISTINCT aw.medium) AS differentMediums
+                          FROM Artists at
+                          JOIN Artworks aw ON at.id = aw.artistId
+                          GROUP BY at.id, at.name
+                          ORDER BY differentMediums DESC
+                          LIMIT 1";
+$query4                = mysqli_query($link, $sql4);
+$resultQuer4           = mysqli_fetch_assoc($query4);
+$MoreMediumsArtistName = $resultQuer4['name'];
+$differentMediums      = $resultQuer4['differentMediums'];
 
 // Largest and smaller artwork of a specific artist
 if ($_POST) {
     $MaxMinArtistName  = $_POST['name'];
-    $sql5 = "SELECT aw.title, aw.units, aw.width * aw.height AS area
-            FROM Artworks aw
-            JOIN Artists at ON aw.artistId = at.id
-            WHERE at.name = '$MaxMinArtistName' 
-                  AND aw.width IS NOT NULL 
-                  AND aw.height IS NOT NULL
-                  AND aw.units IS NOT NULL
-                  AND aw.title IS NOT NULL
-                  AND (aw.width * aw.height) > 0
-            ORDER BY area ASC
-            LIMIT 1";
+    $sql5      = "SELECT aw.title, aw.units, aw.width * aw.height AS area
+                 FROM Artworks aw
+                 JOIN Artists at ON aw.artistId = at.id
+                 WHERE at.name = '$MaxMinArtistName' 
+                       AND aw.width IS NOT NULL 
+                       AND aw.height IS NOT NULL
+                       AND aw.units IS NOT NULL
+                       AND aw.title IS NOT NULL
+                       AND (aw.width * aw.height) > 0
+                 ORDER BY area ASC
+                 LIMIT 1";
 
     $resultMin = mysqli_query($link, $sql5);
     $rowMin    = mysqli_fetch_assoc($resultMin);
@@ -93,8 +90,7 @@ if ($_POST) {
     $maxTitle  = $rowMax['title'];
     $maxUnits  = $rowMax['units'];
 } else {
-    $MaxMinArtistName = '';
-    $minArea = $minTitle = $minUnits = $maxArea = $maxTitle = $maxUnits = '';
+    $MaxMinArtistName = $minArea = $minTitle = $minUnits = $maxArea = $maxTitle = $maxUnits = '';
 }
 
 
