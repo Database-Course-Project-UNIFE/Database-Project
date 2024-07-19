@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net" modified="2024-07-19T13:01:41.727Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="bC_KaUWiH8T7-TbrbkIz" version="24.7.1" type="google">
+  <diagram name="Pagina-1" id="Fb-pVL9hJeVvnrPZYHOG">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-1" value="Artist" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-2" value="&lt;u&gt;ArtistId&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-3" value="Name" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-4" value="Gender" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-5" value="BirthYear" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-6" value="DeathYear" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-7" value="BirthState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-8" value="DeathState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-9" value="BirthCity" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-10" value="Death&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22DeathState%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22520%22%20y%3D%2280%22%20width%3D%2280%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;City" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-11" value="ArtistUrl" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-12" value="artworkId" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-13" value="Artwork" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="35" y="170" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-14" value="&lt;u&gt;ArtworkId&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-15" value="AccessionNumber" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="200" width="110" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-16" value="Title&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22artworkId%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22840%22%20y%3D%2280%22%20width%3D%2280%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-17" value="DateText" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-18" value="Medium" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-19" value="CreditLine" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-20" value="Year" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-21" value="AcquisitionYear" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="200" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-22" value="Types" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="730" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-23" value="Width" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="810" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-24" value="Height" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="890" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-25" value="Depth&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Height%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22890%22%20y%3D%22200%22%20width%3D%2280%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-26" value="Units" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-27" value="Inscription&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Height%22%20style%3D%22rounded%3D0%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22890%22%20y%3D%22200%22%20width%3D%2280%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-28" value="ThumbnailUrl" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="200" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-29" value="artistId" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-30" value="ArtworkUrl" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-31" value="ArtistName" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="PlgLkezIGmrc_TL7cb-D-32" value="ArtistRole" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
