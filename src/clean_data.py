@@ -55,7 +55,7 @@ def clean_artwork_data(df):
     df.drop(columns=['thumbnailCopyright'], inplace=True)
 
     # Check first key integrity
-    df = check_fk_integrity(df)
+    df = check_fk(df)
     
     # Extract acquisitionYear and width from creditLine and dimension columns
     df.loc[:, 'acquisitionYear'] = df['creditLine'].str.extract(r'(\d{4})').iloc[:, 0]
@@ -99,7 +99,7 @@ def extract_type_without_dimensions(dimension_str):
     text_part = dimension_str[:match.start()].strip() if match else dimension_str.strip()
     return text_part.replace(':', '').strip() or None
 
-def check_fk_integrity(df):
+def check_fk(df):
     source_path = "/mnt/c/Users/nicol/OneDrive/Documenti/GitHub/Database-Project/csv-files"
     artist_data_csv = os.path.join(source_path, "artist_data.csv")
     artist_df = pd.read_csv(artist_data_csv)
