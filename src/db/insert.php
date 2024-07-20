@@ -23,20 +23,16 @@ function insertArtist($link) {
     
     fgetcsv($file);
 
-    // Prepare the statement
     $stmt = mysqli_prepare($link, "INSERT INTO Artists (id, name, gender, yearOfBirth, birthCity, birthState, yearOfDeath, deathCity, deathState, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Bind parameters
     mysqli_stmt_bind_param($stmt, "isssssssss", $id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url);
 
     $success_count = 0;
     $error_count = 0;
 
     while (($row = fgetcsv($file)) !== FALSE) {
-        // Assign variables from CSV row
         list($id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url) = $row;
 
-        // Execute the statement
         if (mysqli_stmt_execute($stmt)) {
             $success_count++;
         } else {
@@ -58,20 +54,16 @@ function insertArtworks($link) {
 
     fgetcsv($file);
 
-    // Prepare the statement
     $stmt = mysqli_prepare($link, "INSERT INTO Artworks (id, accession_number, artist, artistRole, artistId, title, dateText, medium, creditLine, year, acquisitionYear, types, width, height, depth, units, inscription, thumbnailUrl, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Bind parameters
     mysqli_stmt_bind_param($stmt, "isssissssiisiiissss", $id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url);
 
     $success_count = 0;
     $error_count = 0;
 
     while (($row = fgetcsv($file)) !== FALSE) {
-        // Assign variables from CSV row
         list($id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url) = $row;
 
-        // Execute the statement
         if (mysqli_stmt_execute($stmt)) {
             $success_count++;
         } else {
