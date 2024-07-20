@@ -16,26 +16,29 @@ if (!$link) {
     exit;
 }
 
+// Initialize variables
+$year             = isset($_POST['year']) ? $_POST['year'] : '';
+$nation           = isset($_POST['nation']) ? $_POST['nation'] : '';
+$MaxMinArtistName = isset($_POST['name']) ? $_POST['name'] : '';
+
 // 1. number of artwork created in a specific year
-if ($_POST) {
-    $year   = $_POST['year'];
+if (isset($_POST['submitYear'])) {
     $sql1   = "SELECT COUNT(*)
                FROM Artworks
                WHERE (year = '$year')";
     $query1 = mysqli_query($link, $sql1);
 } else {
-    $year = $query1 = '';
+    $query1 = '';
 }
 
 // 2. number of artist born or died in a specific nation
-if ($_POST) {
-    $nation = $_POST['nation'];
+if (isset($_POST['submitNation'])) {
     $sql2   = "SELECT COUNT(*)
                FROM Artists
                WHERE (birthState = '$nation' OR deathState = '$nation')";
     $query2 = mysqli_query($link, $sql2);
 } else {
-    $nation = $query2 = '';
+    $query2 = '';
 }
 
 // Artists who published their fist artwork under age 18
@@ -62,8 +65,7 @@ $MoreMediumsArtistName = $resultQuer4['name'];
 $differentMediums      = $resultQuer4['differentMediums'];
 
 // Largest and smaller artwork of a specific artist
-if ($_POST) {
-    $MaxMinArtistName  = $_POST['name'];
+if (isset($_POST['submitArtist'])) {
     $sql5      = "SELECT aw.title, aw.units, aw.width * aw.height AS area
                  FROM Artworks aw
                  JOIN Artists at ON aw.artistId = at.id
@@ -90,7 +92,7 @@ if ($_POST) {
     $maxTitle  = $rowMax['title'];
     $maxUnits  = $rowMax['units'];
 } else {
-    $MaxMinArtistName = $minArea = $minTitle = $minUnits = $maxArea = $maxTitle = $maxUnits = '';
+    $resultMin = $minArea = $minTitle = $minUnits = $resultMax = $maxArea = $maxTitle = $maxUnits = '';
 }
 
 
@@ -152,7 +154,7 @@ if ($_POST) {
             <label>Year:</label>
             <input type="text" name="year" value="<?php echo htmlspecialchars($year); ?>" autofocus>
         </fieldset>
-        <input type="submit" value="Search" />
+        <input type="submit" name="submitYear" value="Search" />
     </form>
 
     <h2>Number of artist born or died in a specific nation: <?php if ($query2) echo mysqli_fetch_assoc($query2)['COUNT(*)']; ?> </h2>
@@ -161,7 +163,7 @@ if ($_POST) {
             <label>Nation:</label>
             <input type="text" name="nation" value="<?php echo htmlspecialchars($nation); ?>">
         </fieldset>
-        <input type="submit" value="Search" />
+        <input type="submit" name="submitNation" value="Search" />
     </form>
 
     <h2>Artists who published their fist artwork under age 18: <?php if ($query3) echo $numRowsQuery3; ?></h2>
@@ -174,7 +176,7 @@ if ($_POST) {
             <label>Artist's name:</label>
             <input type="text" name="name" value="<?php echo htmlspecialchars($MaxMinArtistName); ?>">
         </fieldset>
-        <input type="submit" value="Search" />
+        <input type="submit" name="submitArtist" value="Search" />
     </form> 
     <ul>
         <li>Largest:  <?php if ($resultMax) echo $maxTitle . " (" . $maxArea . " " . $maxUnits .  ")"; ?></li>
