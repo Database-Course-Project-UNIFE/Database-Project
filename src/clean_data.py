@@ -21,6 +21,7 @@ def convert_dtypes(df, desired_dtypes):
 
 def clean_artist_data(df):
     df['gender'] = df['gender'].fillna('-').replace({'Male': 'M', 'Female': 'F'})
+    
     df['placeOfBirth'] = df['placeOfBirth'].fillna('Unknown')
     df['placeOfDeath'] = df['placeOfDeath'].fillna('Unknown')
     
@@ -57,8 +58,10 @@ def clean_artwork_data(df):
     # Check first key integrity
     df = check_fk(df)
     
-    # Extract acquisitionYear and width from creditLine and dimension columns
+    # Extract acquisitionYear from creditLine column
     df.loc[:, 'acquisitionYear'] = df['creditLine'].str.extract(r'(\d{4})').iloc[:, 0]
+    
+    # Extract width and height from dimension colum
     df.loc[:, 'width'] = df['dimensions'].str.extract(r'(\d+)\s*[xX]\s*\d+').astype(float).iloc[:, 0]
     df.loc[:, 'height'] = df['dimensions'].str.extract(r'\d+\s*[xX]\s*(\d+)').astype(float).iloc[:, 0]
     
