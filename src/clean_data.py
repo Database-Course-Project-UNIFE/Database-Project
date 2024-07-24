@@ -67,7 +67,7 @@ def clean_artwork_data(df):
     
     # Extract type without dimensions from 'dimensions' column
     df['dimensions'] = df['dimensions'].astype(str)
-    df['types'] = df['dimensions'].apply(extract_type_without_dimensions)
+    df['types'] = df['dimensions'].apply(extract_type)
     
     # Fill missing values
     df['units'] = df['units'].fillna('mm')
@@ -95,7 +95,7 @@ def clean_artwork_data(df):
     return df[columns_to_keep]
 
 
-def extract_type_without_dimensions(dimension_str):
+def extract_type(dimension_str):
     if pd.isna(dimension_str) or not isinstance(dimension_str, str):
         return None
     match = re.search(r'\d', dimension_str) if any(char.isdigit() for char in dimension_str) else None

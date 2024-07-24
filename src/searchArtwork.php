@@ -18,14 +18,6 @@ if (!$link) {
     exit;
 }
 
-// Verify connection
-if (!$link) {
-    echo "Error: Impossible to connect to the database <br/>";
-    echo "Error code: " . mysqli_connect_errno() . "<br/>";
-    echo "Error msg: " . mysqli_connect_error() . "<br/>";
-    exit;
-}
-
 // If the form was not submitted or not filled out correctly set the values to ''
 if ($_POST) {
     $accession_number = $_POST['accession_number'];

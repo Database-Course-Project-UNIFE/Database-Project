@@ -19,10 +19,10 @@ if (!$link) {
 }
 
 $sql = "SELECT *
-        FROM Artworks
-        JOIN Artists ON Artworks.artistId = Artists.id
-        WHERE (Artworks.artistId={$_GET['artistId']}) 
-        ORDER BY Artworks.year ASC";
+        FROM Artists
+        JOIN Artworks ON Artists.id = Artworks.artistId
+        WHERE (Artists.id={$_GET['artistId']})
+        ORDER BY Artworks.year";
 
 $query = mysqli_query($link, $sql);
 $totalWorks = mysqli_num_rows($query);

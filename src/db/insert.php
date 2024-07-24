@@ -23,6 +23,7 @@ function insertArtist($link) {
     
     fgetcsv($file);
 
+    // Preparation of an SQL statement for data entry
     $stmt = mysqli_prepare($link, "INSERT INTO Artists (id, name, gender, yearOfBirth, birthCity, birthState, yearOfDeath, deathCity, deathState, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     mysqli_stmt_bind_param($stmt, "isssssssss", $id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url);
@@ -31,6 +32,7 @@ function insertArtist($link) {
     $error_count = 0;
 
     while (($row = fgetcsv($file)) !== FALSE) {
+        // Value assignment
         list($id, $name, $gender, $yearOfBirth, $birthCity, $birthState, $yearOfDeath, $deathCity, $deathState, $url) = $row;
 
         if (mysqli_stmt_execute($stmt)) {
@@ -54,6 +56,7 @@ function insertArtworks($link) {
 
     fgetcsv($file);
 
+    // Preparation of an SQL statement for data entry
     $stmt = mysqli_prepare($link, "INSERT INTO Artworks (id, accession_number, artist, artistRole, artistId, title, dateText, medium, creditLine, year, acquisitionYear, types, width, height, depth, units, inscription, thumbnailUrl, url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     mysqli_stmt_bind_param($stmt, "isssissssiisiiissss", $id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url);
@@ -62,6 +65,7 @@ function insertArtworks($link) {
     $error_count = 0;
 
     while (($row = fgetcsv($file)) !== FALSE) {
+        // Value assignment
         list($id, $accession_number, $artist, $artistRole, $artistId, $title, $dateText, $medium, $creditLine, $year, $acquisitionYear, $types, $width, $height, $depth, $units, $inscription, $thumbnailUrl, $url) = $row;
 
         if (mysqli_stmt_execute($stmt)) {
